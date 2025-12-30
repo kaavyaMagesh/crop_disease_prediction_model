@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+Crop Disease Detection using Computer Vision
+Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements a computer vision–based crop disease detection system using deep learning. The model classifies crop leaf images into healthy and diseased categories and identifies the specific disease type. The solution enables early disease detection, reduces crop loss, and is suitable for deployment in real-world agricultural environments.
 
-## Available Scripts
+The model is designed to be lightweight and deployable on mobile devices, making it appropriate for low-connectivity and resource-constrained settings.
 
-In the project directory, you can run:
+Objectives
 
-### `npm start`
+Detect crop diseases from leaf images captured via mobile cameras
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Classify multiple crop–disease combinations
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Enable fast and reliable inference for field usage
 
-### `npm test`
+Integrate with a farmer advisory mobile application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Model Architecture
 
-### `npm run build`
+Base model: MobileNetV2 (transfer learning)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Framework: TensorFlow / Keras
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Methodology:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Initialized with ImageNet pretrained weights
 
-### `npm run eject`
+Custom classification head added
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Selective fine-tuning of deeper layers
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+MobileNetV2 was chosen due to its low latency, small memory footprint, and suitability for edge and mobile deployment.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Dataset
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The model was trained using publicly available, labeled plant disease image datasets containing multiple crop species and disease classes. These datasets include field-like variations such as lighting changes, background noise, and partial leaf damage.
 
-## Learn More
+Primary sources:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Kaggle multi-class crop disease image datasets
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open-source plant disease image repositories
 
-### Code Splitting
+Data Preprocessing and Augmentation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Images resized to 224 × 224 pixels
 
-### Analyzing the Bundle Size
+Pixel normalization to [0,1] range
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Data augmentation techniques:
 
-### Making a Progressive Web App
+Random rotations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Horizontal and vertical flips
 
-### Advanced Configuration
+Zoom and brightness adjustments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+These steps improve generalization to real-world farm conditions.
 
-### Deployment
+Training Details
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Loss function: Categorical Cross-Entropy
 
-### `npm run build` fails to minify
+Optimizer: Adam
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Batch size: 32
+
+Epochs: 20–30
+
+Evaluation metrics:
+
+Accuracy
+
+Precision
+
+Recall
+
+Confusion matrix
+
+Results
+
+Achieved approximately 90% validation accuracy (varies by disease class)
+
+Robust performance under varying illumination and background conditions
+
+Suitable for real-time inference on mobile devices
+
+Inference Pipeline
+
+Farmer captures a crop leaf image using a mobile device
+
+Image is resized and normalized
+
+Image is passed through the trained CNN model
+
+Model outputs disease class and confidence score
+
+Output is mapped to disease description and treatment recommendations
+
+Deployment
+
+Model converted to TensorFlow Lite format
+
+Integrated into a Flutter-based mobile application
+
+Supports offline inference for low-connectivity regions
+
+Integration in Smart India Hackathon Solution
+
+This crop disease detection module integrates with:
+
+Crop recommendation engine
+
+Weather and humidity data sources
+
+Sustainability and advisory modules
+
+The combined multi-modal system enables early disease warnings by correlating image-based detection with environmental conditions.
+
+Future Improvements
+
+Region-specific disease fine-tuning
+
+Disease severity estimation (mild, moderate, severe)
+
+Multi-leaf and whole-plant analysis
+
+Federated learning for decentralized model improvement
+
+License
+
+This project is intended for academic, research, and hackathon use.
